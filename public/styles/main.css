@@ -1,0 +1,280 @@
+/* Base styles for the entire body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #122742;
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+
+  min-height: 100vh;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: auto 1fr;
+  width: 100%;
+}
+#Idk {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 70% 30%;
+  row-gap: 12%;
+}
+#desine {
+  padding-top: 5%;
+  padding-left: 40%;
+}
+#blogForm {
+  padding-top: 10%;
+  width: 40%;
+}
+#result {
+  width: 50%;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+#copyNotificationt {
+  width: 50%;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  border-radius: 10px;
+  padding: 20px;
+  align-self: flex-end;
+}
+#copyButton {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 3;
+  width: 25%;
+  align-self: center;
+}
+/*
+#End {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 5px black solid;
+  
+}*/
+#End {
+  display: grid;
+  grid-template-columns: 25% 12% 63% 20%;
+  grid-template-rows: 0.25fr 0.25fr 0.25fr;
+}
+#loading {
+  align-self: flex-start;
+}
+#loaderIcon {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 10%;
+  padding-top: 5%;
+  padding-left: 40%;
+  width: 83%;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: 400%;
+}
+
+p {
+  font-size: 14px;
+  color: #bbb;
+  margin-bottom: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+input {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+input[type="text"] {
+  background-color: #0e223f;
+  color: white;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4b84e4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #3a6cb8;
+}
+
+.loading {
+  font-size: 18px;
+  margin-top: 20px;
+  color: #e7d491;
+}
+
+.hidden {
+  display: none;
+}
+
+#result {
+  margin-top: 0px;
+  background-color: #0e223f;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(90deg, #0001 33%, #0005 50%, #0001 66%) #f2f2f2;
+  background-size: 300% 100%;
+  animation: l1 1s infinite linear;
+  align-self: flex-start;
+}
+@keyframes l1 {
+  0% {
+    background-position: right;
+  }
+}
+
+/* HTML: <div class="loaders"></div> */
+.loaders {
+  width: fit-content;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 20px;
+  clip-path: inset(0 3ch 0 0);
+  animation: l4 1s steps(4) infinite;
+}
+
+@keyframes l4 {
+  to {
+    clip-path: inset(0 -1ch 0 0);
+  }
+}
+
+#copyNotification {
+  background-color: #28a745; /* Green background */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  align-self: flex-end;
+  width: 50%;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+
+#copyNotification.visible {
+  opacity: 1;
+}
+
+/* General Mobile Adjustments */
+@media (max-width: 768px) {
+  /* Center the content inside the container */
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Horizontally center the content */
+    padding: 0 10px;
+  }
+
+  #Idk {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the form container */
+    width: 100%;
+  }
+
+  #desine {
+    padding: 0;
+    text-align: center;
+  }
+
+  form {
+    width: 100%; /* Full width on mobile */
+    max-width: 400px; /* Limit the width on larger screens */
+    margin: 0 auto; /* Center the form */
+    padding: 10% 0;
+    text-align: left;
+  }
+  #blogForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  input,
+  button {
+    width: 100%; /* Full-width inputs and buttons */
+    margin-bottom: 20px;
+  }
+
+  #loaderIcon {
+    padding-left: 0;
+    padding-top: 10%; /* Adjust the loader padding */
+    width: 100%;
+  }
+
+  #End {
+    display: block; /* Make the results section stack vertically */
+    padding: 20px 0;
+    border: none; /* Remove the border for simplicity on mobile */
+  }
+
+  #result {
+    width: 100%;
+    padding: 10px;
+  }
+
+  #copyButton {
+    width: 100%;
+  }
+}
+
+/* Adjust for very small screens like phones (max-width: 480px) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  button {
+    padding: 8px 16px;
+  }
+
+  #loaderIcon {
+    top: 60%;
+  }
+
+  form {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
