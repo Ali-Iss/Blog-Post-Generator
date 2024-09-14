@@ -12,7 +12,7 @@ app.use(express.static("public"));
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("index.html");
 });
 
 // Sample route to generate blog content
