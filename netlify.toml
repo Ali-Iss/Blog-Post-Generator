@@ -1,0 +1,6 @@
+[build]
+  publish = "public"         # This is where your static files (like HTML, CSS, EJS) live
+  functions = "functions"    # This is where your serverless functions live
+
+[dev]
+  command = "npm start"      # The command to run your local development environment

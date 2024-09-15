@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import { CohereClient } from "cohere-ai";
+import serverless from "serverless-http"; // Added this to wrap the Express app
 
 const app = express();
 const port = 3000;
@@ -10,9 +11,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // Add this to handle JSON bodies
 app.use(express.static("public"));
 app.use(cors());
+app.set('view engine', 'ejs');
+app.set('views', 'public'); // Assuming your EJS files are in the 'public' folder
 
 app.get("/", (req, res) => {
-  res.render("index.html");
+  res.render("index.ejs");
 });
 
 // Sample route to generate blog content
@@ -40,8 +43,5 @@ app.post("/generate", (req, res) => {
   })();
 });
 
-// Listen on your predefined port and start the server.
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+module.exports.handler = serverless(app);
