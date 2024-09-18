@@ -8,7 +8,7 @@ import serverless from "serverless-http"; // Added this to wrap the Express app
 
 dotenv.config(); // Load environment variables from .env file
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // Add this to handle JSON bodies
@@ -20,7 +20,7 @@ app.set('views', 'public'); // Assuming your EJS files are in the 'public' folde
 
 
 // Sample route to generate blog content
-app.post("/generate", (req, res) => {
+app.post("/api/index", (req, res) => {
   const { topic, length } = req.body;
 
   // Mock content generation (replace this with AI content)
@@ -49,9 +49,7 @@ app.post("/generate", (req, res) => {
   })();
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+
 
 export const handler = serverless(app);
 
