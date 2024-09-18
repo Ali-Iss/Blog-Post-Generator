@@ -71,7 +71,7 @@
           document.getElementById("loader").classList.remove("hidden");
 
           // Send the POST request to the server
-          fetch("/generate", {
+          fetch("/.netlify/functions/index", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
