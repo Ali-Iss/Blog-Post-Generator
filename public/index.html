@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Post Generator</title>
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="Idk">
+        <div id="desine">
+          <h1>Blog Post Generator</h1>
+          <p>by Ali-Iss</p>
+          <h4>
+            An AI-powered app that generates a blog post <br />
+            from a user-submitted topic
+          </h4>
+        </div>
+        <form id="blogForm">
+          <label for="topic">What is the topic?</label>
+          <input
+            type="text"
+            id="topic"
+            name="topic"
+            placeholder="E.g. Machine Learning"
+            required
+          />
+
+          <label for="length">What is the desired length?</label>
+          <input
+            type="text"
+            id="length"
+            name="length"
+            placeholder="E.g. 3 paragraphs"
+            required
+          />
+
+          <button type="submit">generate</button>
+        </form>
+        <div id="loaderIcon">
+          <div id="loading" class="loading loaders hidden">
+            The magic is happening...
+          </div>
+          <div id="loader" class="loader hidden"></div>
+        </div>
+      </div>
+
+      <div id="End">
+        <!-- Blog post will be rendered here -->
+        <div id="copyNotification">Copied!</div>
+        <div id="result" class="hidden"></div>
+        <!-- Add the Copy button (initially hidden) -->
+        <button id="copyButton" class="hidden" onclick="copyToClipboard()">
+          Copy Blog Post
+        </button>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("blogForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent form from submitting in the traditional way
+
+          const topic = document.getElementById("topic").value;
+          const length = document.getElementById("length").value;
+
+          // Show loading indicator
+          document.getElementById("loading").classList.remove("hidden");
+          document.getElementById("loader").classList.remove("hidden");
+
+          // Send the POST request to the server
+          fetch("/generate", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ topic, length }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              // Hide loading indicator
+              document.getElementById("loading").classList.add("hidden");
+              document.getElementById("loader").classList.add("hidden");
+
+              // separate the title and the blog
+              const textMatch = `${data.blogPost}`;
+              // Extract the title
+              const titleMatch = textMatch.match(/Title:\s*(.+?)\s*Your blog:/);
+              // Extract the blog content
+              const blogMatch = textMatch.match(/Your blog:\s*([\s\S]+)/);
+              // separate the title and the blog
+              const title = titleMatch[1];
+              const blog = blogMatch[1].replace(/\n/g, "<br>");
+
+              // Update the result div with the generated blog post
+              const resultDiv = document.getElementById("result");
+              resultDiv.innerHTML = `<h3>Title: ${title}</h3><p style="font-size: large;">${blog}</p>`;
+              resultDiv.style.display = "block";
+
+              // Show the Copy button
+              document.getElementById("copyButton").classList.remove("hidden");
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              document.getElementById("loading").classList.add("hidden");
+              document.getElementById("loader").classList.add("hidden");
+            });
+        });
+
+      function copyToClipboard() {
+        // Get the title and blog content
+        const title = document.querySelector("#result h3").innerText;
+        const blogContent = document.querySelector("#result p").innerText;
+
+        // Combine the title and blog content into one string
+        const fullContent = `${title}\n\n${blogContent}`;
+
+        // Copy the text to the clipboard
+        navigator.clipboard
+          .writeText(fullContent)
+          .then(() => {
+            // Show the "Copied" notification
+            const notification = document.getElementById("copyNotification");
+            notification.classList.add("visible");
+
+            // Hide the notification after 2 seconds
+            setTimeout(() => {
+              notification.classList.remove("visible");
+            }, 2000); // 2 seconds delay
+          })
+          .catch((err) => {
+            console.error("Could not copy text: ", err);
+          });
+      }
+    </script>
+  </body>
+</html>

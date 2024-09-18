@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon functions/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node functions/index.js"
+    "dev": "node functions/index.js",
+    "build": "node compile-ejs.mjs"
   },
   "keywords": [],
   "author": "Ali-Iss",
