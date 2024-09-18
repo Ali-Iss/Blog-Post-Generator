@@ -94,6 +94,9 @@
               const title = titleMatch[1];
               const blog = blogMatch[1].replace(/\n/g, "<br>");
 
+              // Log the HTML to check if the data is being processed correctly
+              console.log(`<h3>Title: ${title}</h3><p style="font-size: large;">${blog}</p>`);
+
               // Update the result div with the generated blog post
               const resultDiv = document.getElementById("result");
               resultDiv.innerHTML = `<h3>Title: ${title}</h3><p style="font-size: large;">${blog}</p>`;
