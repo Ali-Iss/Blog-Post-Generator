@@ -5,10 +5,10 @@
 [dev]
   
   environment = { COHERE_API_KEY = "wRvOaNnpamvr7jD8ho9Ah8j8Ngn3USPwPltFJgs5" }
-  framework = "#custom"   # Custom framework since you're using Express
-  command = "npm run dev" # Use your npm dev command to start the Express app in dev mode
-  targetPort = 3000       # The port where your Express server is running
-  port = 8888             # The port Netlify will proxy to your Express app
+  framework = "#custom"   
+  command = "npm run dev" 
+  targetPort = 5000       
+  port = 8888             
 
  [[redirects]]
   from = "/*"
