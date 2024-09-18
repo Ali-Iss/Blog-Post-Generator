@@ -3,4 +3,9 @@
   functions = "functions"    # This is where your serverless functions live
 
 [dev]
-  command = "npm start"      # The command to run your local development environment
+  
+  environment = { COHERE_API_KEY = "wRvOaNnpamvr7jD8ho9Ah8j8Ngn3USPwPltFJgs5" }
+  framework = "#custom"   # Custom framework since you're using Express
+  command = "npm run dev" # Use your npm dev command to start the Express app in dev mode
+  targetPort = 3000       # The port where your Express server is running
+  port = 8888             # The port Netlify will proxy to your Express app

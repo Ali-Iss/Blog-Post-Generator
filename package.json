@@ -1,13 +1,15 @@
 {
-  "name": "bloge-web",
+  "name": "blog-post-generator",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon functions/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node functions/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ali-Iss",
   "license": "ISC",
   "description": "",
   "dependencies": {
@@ -15,6 +17,7 @@
     "body-parser": "^1.20.3",
     "cohere-ai": "^7.13.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.21.0",
     "nodemon": "^3.1.4",
