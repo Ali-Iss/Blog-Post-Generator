@@ -17,9 +17,7 @@ app.use(cors());
 app.set('view engine', 'ejs');
 app.set('views', 'public'); // Assuming your EJS files are in the 'public' folder
 
-app.get("/", (req, res) => {
-  res.render("index.ejs");
-});
+
 
 // Sample route to generate blog content
 app.post("/generate", (req, res) => {

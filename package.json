@@ -1,7 +1,7 @@
 {
   "name": "blog-post-generator",
   "version": "1.0.0",
-  "main": "index.js",
+  
   "type": "module",
   "scripts": {
     "start": "nodemon functions/index.js",
