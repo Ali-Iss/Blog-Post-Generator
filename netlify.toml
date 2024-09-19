@@ -3,20 +3,25 @@
   functions = "functions"    
 
 [dev]
-  
   environment = { COHERE_API_KEY = "wRvOaNnpamvr7jD8ho9Ah8j8Ngn3USPwPltFJgs5" }
-        
-  port = 8888             
+  port = 8888    
+
+
+[build.environment]
+  GO_VERSION = "1.19."
+
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
 
  [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-  [build.environment]
-  GO_VERSION = "1.19."
+  
 
-  [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
+  
